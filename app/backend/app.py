@@ -34,7 +34,7 @@ from quart import (
 from quart_cors import cors
 
 from approaches.approach import Approach
-from approaches.chatreadretrieveread import ChatReadRetrieveReadApproach
+from approaches.chatreadretrieveread import ChatReadRetrieveReadApproach, set_data_file
 from approaches.chatreadretrievereadvision import ChatReadRetrieveReadVisionApproach
 from approaches.retrievethenread import RetrieveThenReadApproach
 from approaches.retrievethenreadvision import RetrieveThenReadVisionApproach
@@ -204,6 +204,17 @@ def config():
         }
     )
 
+@bp.route('/api/upload', methods=['POST'])
+async def upload_file():
+    request_json = await request.files
+    if 'file' not in request_json:
+        return 'No file part', 400
+    file = request_json['file']
+    if file.filename == '':
+        return 'No selected file', 400
+    if file:
+        set_data_file(file)
+        return 'File uploaded successfully', 200
 
 @bp.before_app_serving
 async def setup_clients():

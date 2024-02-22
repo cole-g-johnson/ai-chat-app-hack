@@ -30,7 +30,10 @@
     margin: 0;
     font-size: 22px;
     width: 280px;
-    min-height: 100px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
 }
 
 @media only screen and (max-height: 780px) {
