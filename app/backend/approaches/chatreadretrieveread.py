@@ -146,7 +146,7 @@ class ChatReadRetrieveReadApproach(ChatApproach):
 
         query_text = self.get_search_query(chat_completion, original_user_query)
         df = pd.read_csv(DATA_FILE)
-        llm = ChatOpenAI(temperature=0, openai_api_key = "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")
+        llm = ChatOpenAI(temperature=0, openai_api_key = "")
         agent_executor = create_pandas_dataframe_agent(llm=llm, df=df, verbose=True)
 
         for i in range(5):
